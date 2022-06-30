@@ -51,10 +51,10 @@ isNaN(0/0);
 isNaN(undefined);
 Number.isNaN(undefined);
 ```
-- How to check types correctly?
+- Write a utility function that can check types correctly and can differentiate between arrays and built-in objects (Date, Map, Set, WeakMap)?
 ```javascript
 function typeCheck(value) {
-  const return_value = Object.prototype.toString.call(value);
+  const return_value = {}.toString.call(value); // Object.prototype.toString would also work
   const type = return_value.substring(
            return_value.indexOf(" ") + 1, 
            return_value.indexOf("]"));
@@ -99,6 +99,43 @@ function sayAge () {
   console.log(`My age is ${this.age}`)
 }
 sayAge();
+```
+- Difference between slice and splice?
+- Explain all the 3 parameters of JSON.stringify.
+```javascript
+const a = {
+  name: "Shimul",
+  age: 45,
+  married: true,
+  daughters: ["Shriya", "Ridhi"],
+  numOfSons: null,
+  symb: Symbol("test"),
+  greet() {
+    return "Hi, Shimul";
+  },
+  set: new Set([1, 2, 3]),
+  map: new Map([[1, "one"], [2, "two"]])
+};
+
+function replace(key, val) {
+  if (typeof val === 'symbol') {
+    return val.toString();
+  }
+  if (val instanceof Set) {
+    return Array.from(val);
+  }
+  if (val instanceof Map) {
+    return Array.from(val.entries())
+  }
+  if (typeof val === 'function') {
+    return val.toString();
+  }
+  return val;
+}
+
+console.log(JSON.stringify(a));
+console.log(JSON.stringify(a, null, 4));
+console.log(JSON.stringify(a, replace, 4));
 ```
 - Output?
 ```javascript
