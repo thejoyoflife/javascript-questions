@@ -1,10 +1,112 @@
 ### Miscellaneous
+- typeof checking. Output?
+```javascript
+typeof 0;
+typeof +0;
+typeof -0;
+typeof Math.sqrt(2);
+typeof Infinity;
+typeof NaN; 
+typeof Number('100');
+typeof Number('freeCodeCamp'); 
+
+typeof true;
+typeof false;
+typeof Boolean(0);
+
+typeof 12n;
+
+typeof '';
+typeof 'freeCodeCamp';
+typeof `freeCodeCamp is awesome`;
+typeof '100';
+typeof String(100);
+
+typeof Symbol();
+typeof Symbol('freeCodeCamp');
+
+typeof {blog: 'freeCodeCamp', author: 'Tapas A'};
+typeof ['This', 'is', 101];
+typeof new Date();
+typeof Array(4);
+
+typeof new Boolean(true); 
+typeof new Number(101);
+typeof new String('freeCodeCamp');
+typeof new Object;
+
+typeof alert;
+typeof function () {};
+typeof (() => {});
+typeof Math.sqrt;
+
+let a;
+typeof a;
+typeof b;
+typeof undefined;
+
+typeof null;
+
+isNaN(0/0);
+isNaN(undefined);
+Number.isNaN(undefined);
+```
+- How to check types correctly?
+```javascript
+function typeCheck(value) {
+  const return_value = Object.prototype.toString.call(value);
+  const type = return_value.substring(
+           return_value.indexOf(" ") + 1, 
+           return_value.indexOf("]"));
+
+  return type.toLowerCase();
+}
+
+typeCheck([]); // 'array'
+typeCheck(new Date()); // 'date'
+typeCheck(new String('freeCodeCamp')); // 'string'
+typeCheck(new Boolean(true)); // 'boolean'
+typeCheck(null); // 'null'
+typeCheck(undefined); // 'undefined'
+```
+- `this` binding, and difference between `call`, `apply` and `bind` functions?
+```javascript
+// 1. Output?
+const user = {
+  name: 'Tyler',
+  age: 27,
+  languages: ['JavaScript', 'Ruby', 'Python'],
+  greet() {
+    const hello = `Hello, my name is ${this.name} and I know`
+
+    const langs = this.languages.reduce(function (str, lang, i) {
+      if (i === this.languages.length - 1) {
+        return `${str} and ${lang}.`
+      }
+
+      return `${str} ${lang},`
+    }, "")
+
+    alert(hello + langs)
+  }
+}
+user.greet();
+
+// 2. Output?
+'use strict' // with or without...
+window.age = 27;
+function sayAge () {
+  console.log(`My age is ${this.age}`)
+}
+sayAge();
+```
 - Output?
 ```javascript
 const a = {name: "shimul", office: "SIL", addr: "Banani"};
 const b = {age: 40, addr: {vill: "Modhubari", upazilla: "Lalpur"}};
 const res = Object.assign(a, b);
 b.addr.vill = "Bahadipur";
+console.log(res === a);
 console.log(res);
 ```
 - Difference between `Object.keys` and `for-in` loop? What are the internal attributes of an object's property? - *writable*, *configurable*, *enumerable* and *value*.
@@ -47,6 +149,35 @@ const mArr = [
 console.log(mArr);
 ```
 ### Promises
+- Difference between `Promise.all`, `Promise.allSettled`, `Promise.race` and `Promise.any`. What is the structure of the settled message of `Promise.allSettled`, and error message of `Promise.any` when all the constituent promises get rejected.
+```javascript
+// 1. Output?
+const p1 = new Promise((res, rej) => {
+  setTimeout(() => rej(1), 2000);
+});
+const p2 = new Promise((res, rej) => {
+  setTimeout(() => res(2), 3000);
+});
+const p3 = 3;
+
+const p = Promise.allSettled([p1, p2, p3]);
+
+p.then(res => console.log(res))
+  .catch(err => console.error(err));
+
+// 2. Output?
+const p1 = new Promise((res, rej) => {
+  setTimeout(() => rej(1), 2000);
+});
+const p2 = new Promise((res, rej) => {
+  setTimeout(() => rej(2), 3000);
+});
+
+const p = Promise.any([p1, p2]);
+
+p.then(res => console.log(res))
+  .catch(err => console.error(err)); // the structure of the err???  
+```
 - Output?
 ```javascript
 console.log('start')
