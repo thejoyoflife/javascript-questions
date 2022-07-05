@@ -51,6 +51,14 @@ isNaN(0/0);
 isNaN(undefined);
 Number.isNaN(undefined);
 ```
+```javascript
+const arr = [2, 5, 9, 2];
+console.log(arr.indexOf(9, -1)); // -1
+console.log(arr.indexOf(5, -3)); // 1
+console.log(arr.lastIndexOf(2, 2)); // 0
+console.log(arr.lastIndexOf(2, -1)); // 3
+console.log(arr.fill(0, 1, 3)); // [2, 0, 0, 2]
+```
 - Write a utility function that can check types correctly and can differentiate between arrays and built-in objects (Date, Map, Set, WeakMap)?
 ```javascript
 function typeCheck(value) {
@@ -145,6 +153,24 @@ const res = Object.assign(a, b);
 b.addr.vill = "Bahadipur";
 console.log(res === a);
 console.log(res);
+```
+- Difference between `Object.create` and `new` (hint: `new <Function>` actually runs constructor code, whereas `Object.create` will not execute the constructor code).
+```javascript
+function Dog(){
+    this.pupper = 'Pupper';
+};
+
+Dog.prototype.pupperino = 'Pups.';
+var maddie = new Dog();
+var buddy = Object.create(Dog.prototype);
+
+//Using Object.create()
+console.log(buddy.pupper); //Output is undefined
+console.log(buddy.pupperino); //Output is Pups.
+
+//Using New Keyword
+console.log(maddie.pupper); //Output is Pupper
+console.log(maddie.pupperino); //Output is Pups.
 ```
 - Difference between `Object.keys` and `for-in` loop? What are the internal attributes of an object's property? - *writable*, *configurable*, *enumerable* and *value*.
 ```javascript
