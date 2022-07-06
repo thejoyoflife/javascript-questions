@@ -1,4 +1,10 @@
 ### Miscellaneous
+- Primitive coercion...
+```javascript
+var primitive = "september";
+primitive.vowels = 3; // new String("september").vowels = 3
+primitive.vowels; //undefined;   // new String("september").vowels
+```
 - typeof checking. Output?
 ```javascript
 typeof 0;
@@ -58,6 +64,21 @@ console.log(arr.indexOf(5, -3)); // 1
 console.log(arr.lastIndexOf(2, 2)); // 0
 console.log(arr.lastIndexOf(2, -1)); // 3
 console.log(arr.fill(0, 1, 3)); // [2, 0, 0, 2]
+```
+```javascript
+const arr = [1, 2, 3, 4];
+arr[100] = 100;
+console.log(arr.length);
+```
+- Hoisting , Temporal Dead Zone (TDZ)
+```javascript
+console.log(typeof doesntExist); // undefined , when the following line is commented out. Otherwise, throw error becuase of Temporal Dead Zone (TDZ)
+//let doesntExist; // when comment is removed the above line causes an error
+```
+```javascript
+let a = f(); // 1
+const b = 2;
+function f() { return b; } // Error, becuase of b is in TDZ. If b is declared with var, then there wouldn't be any error.
 ```
 - Write a utility function that can check types correctly and can differentiate between arrays and built-in objects (Date, Map, Set, WeakMap)?
 ```javascript
