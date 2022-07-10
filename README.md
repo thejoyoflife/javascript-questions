@@ -383,3 +383,16 @@ Promise.reject( 'Reject DATA!' )
     return '[4] then payload';
 } );
 ```
+- Write a template engine.
+```javascript
+const obj = {
+  name: "Shimul",
+  age: 40,
+  job: {
+    name: "Java Developer"
+  }
+};
+
+const template = "My name is ${name}. I am ${age} years old. And, I am a ${job.name}.";
+console.log(template.render(obj)); // make it compile and return the expected output.
+```
