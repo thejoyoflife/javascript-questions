@@ -393,6 +393,8 @@ Promise.reject( 'Reject DATA!' )
     return '[4] then payload';
 } );
 ```
+- Implement `Promise.all` function.
+- Implement `Array.map` function using `reduce`.
 - Write a template engine.
 ```javascript
 const obj = {
