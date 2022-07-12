@@ -1,4 +1,5 @@
 ### Miscellaneous
+- How to make a JS object Immutable. Hint: `Object.freeze`, `Object.seal`, `Object.preventExtensions`.
 - Primitive coercion...
 ```javascript
 var primitive = "september";
