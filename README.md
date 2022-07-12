@@ -193,6 +193,16 @@ console.log(buddy.pupperino); //Output is Pups.
 console.log(maddie.pupper); //Output is Pupper
 console.log(maddie.pupperino); //Output is Pups.
 ```
+```javascript
+// How to make this print statements to return 40 and true respectively.
+const P = function() {
+  this.age = 40;
+}
+const obj = Object.create(P);
+console.log(obj.age); // undefined
+console.log(obj instanceof P); // false
+```
+
 - Difference between `Object.keys` and `for-in` loop? What are the internal attributes of an object's property? - *writable*, *configurable*, *enumerable* and *value*.
 ```javascript
 const a = {name: "shimul", office: "SIL", addr: "Banani"};
